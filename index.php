@@ -1,3 +1,20 @@
+<?php session_start(); 
+if(isset($_SESSION['carrito'])){
+$carrito_mio=$_SESSION['carrito'];
+}
+if(isset($_SESSION['carrito'])){
+    for($i=0;$i<=count($carrito_mio)-1;$i ++){
+        if(isset($carrito_mio[$i])){
+        if($carrito_mio[$i]!=NULL){ 
+        if(!isset($carrito_mio['cantidad'])){$carrito_mio['cantidad'] = '0';}else{ $carrito_mio['cantidad'] = $carrito_mio['cantidad'];}
+        $total_cantidad = $carrito_mio['cantidad'];
+    $total_cantidad ++ ;
+    if(!isset($totalcantidad)){$totalcantidad = '0';}else{ $totalcantidad = $totalcantidad;}
+    $totalcantidad += $total_cantidad;
+    }}}
+}
+     if(!isset($totalcantidad)){$totalcantidad = '';}else{ $totalcantidad = $totalcantidad;}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +24,7 @@
     <title>MyLibrary</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />    
 	<link href="css/templatemo-style.css" rel="stylesheet" />
+	<link href="https://ccdn.jsdelivr.net/npm/bootstrap@5.02/dist/css/bootstrap.min.css" reel="stylesheet"/>
 	<link href="css/all.min.css" rel="stylesheet" />
 </head>
 <body> 
@@ -27,11 +45,11 @@
 						</div>
 						<nav class="col-md-6 col-12 tm-nav">
 							<ul class="tm-nav-ul">
-								<li class="tm-nav-li"><a href="index.html" class="tm-nav-link active">Inicio</a></li>
+								<li class="tm-nav-li"><a href="index.php" class="tm-nav-link active">Inicio</a></li>
 								<li class="tm-nav-li"><a href="about.html" class="tm-nav-link">Acerca</a></li>
 								<li class="tm-nav-li"><a href="contact.html" class="tm-nav-link">Contacto</a></li>
 								<li class="tm-nav-li"><a href="login.html" class="tm-nav-link">Login</a></li>
-								<li class="tm-nav-li"><a href="index.html" class="tm-nav-link"><i class="fas fa-1x fa-cart-arrow-down tm-feature-icon"></i></a></li>
+								<li class="tm-nav-li"><a href="carrito.php" class="tm-nav-link"><?php echo $totalcantidad;?><i class="fas fa-1x fa-cart-arrow-down tm-feature-icon"></i></a></li>
 							</ul>
 						</nav>	
 					</div>
@@ -41,7 +59,7 @@
 
 		<main>
 			<header class="row tm-welcome-section">
-				<h2 class="col-12 text-center tm-section-title">¡Bienvenido a MyLibrary!</h2>
+				<h2 class="col-12 text-center tm-section-title">Bienvenido a MyLibrary</h2>
 				<p class="col-12 text-center">Cada libro, una nueva travesía.</p>
 			</header>
 			
@@ -66,6 +84,14 @@
 								<h4 class="tm-gallery-title">Harry Potter y la piedra filosofal.</h4>
 								<p class="tm-gallery-description">Harry Potter, un joven huérfano que descubre su verdadera herencia como mago el día de su undécimo cumpleaños.</p>
 								<p class="tm-gallery-price">$500</p>
+								<form id="formulario" name="formulario" method="post" action="php/cart.php">
+									<button type="button" class="btn btn-sm btn-outline-secondary">Detalles</button>
+									<button type="submit" class="btn btn-sm btn-outline-secondary">Añadir al carrito</button>
+									  <input name="ref" type="hidden" id="ref" value="mu001" />                           
+									  <input name="precio" type="hidden" id="precio" value="500" />
+									  <input name="titulo" type="hidden" id="titulo" value="Harry Potter y la piedra filosofal." />
+									  <input name="cantidad" type="hidden" id="cantidad" value="1" class="pl-2" />
+								  </form>
 							</figcaption>
 						</figure>
 					</article>
@@ -76,6 +102,14 @@
 								<h4 class="tm-gallery-title">El señor de los anillos.<br>La comunidad del anillo.</h4>
 								<p class="tm-gallery-description">La historia se desarrolla en un mundo de fantasía lleno de razas mágicas, héroes valientes y un anillo con poderes corruptores.</p>
 								<p class="tm-gallery-price">$650</p>
+								<form id="formulario" name="formulario" method="post" action="php/cart.php">
+									<button type="button" class="btn btn-sm btn-outline-secondary">Detalles</button>
+									<button type="submit" class="btn btn-sm btn-outline-secondary">Añadir al carrito</button>
+									  <input name="ref" type="hidden" id="ref" value="mu002" />                           
+									  <input name="precio" type="hidden" id="precio" value="650" />
+									  <input name="titulo" type="hidden" id="titulo" value="El señor de los anillos. La comunidad del anillo." />
+									  <input name="cantidad" type="hidden" id="cantidad" value="1" class="pl-2" />
+								  </form>
 							</figcaption>
 						</figure>
 					</article>
@@ -86,6 +120,15 @@
 								<h4 class="tm-gallery-title">El libro de los secretos vivientes.</h4>
 								<p class="tm-gallery-description">Al no poder localizar a su autora, releen el libro mientras sueñan con lo maravilloso que sería vivir en ese mundo.</p>
 								<p class="tm-gallery-price">$200</p>
+
+								<form id="formulario" name="formulario" method="post" action="php/cart.php">
+									<button type="button" class="btn btn-sm btn-outline-secondary">Detalles</button>
+									<button type="submit" class="btn btn-sm btn-outline-secondary">Añadir al carrito</button>
+									  <input name="ref" type="hidden" id="ref" value="mu003" />                           
+									  <input name="precio" type="hidden" id="precio" value="200" />
+									  <input name="titulo" type="hidden" id="titulo" value="El libro de los secretos vivientes." />
+									  <input name="cantidad" type="hidden" id="cantidad" value="1" class="pl-2" />
+								  </form>
 							</figcaption>
 						</figure>
 					</article>
@@ -96,6 +139,14 @@
 								<h4 class="tm-gallery-title">Crónicas de Narnia.<br>El león, la bruja y el ropero.</h4>
 								<p class="tm-gallery-description">Una obra de fantasía clásica que ha encantado a lectores de todas las edades durante décadas.</p>
 								<p class="tm-gallery-price">$350</p>
+								<form id="formulario" name="formulario" method="post" action="php/cart.php">
+									<button type="button" class="btn btn-sm btn-outline-secondary">Detalles</button>
+									<button type="submit" class="btn btn-sm btn-outline-secondary">Añadir al carrito</button>
+									  <input name="ref" type="hidden" id="ref" value="mu004" />                           
+									  <input name="precio" type="hidden" id="precio" value="350" />
+									  <input name="titulo" type="hidden" id="titulo" value="Crónicas de Narnia.<br>El león, la bruja y el ropero." />
+									  <input name="cantidad" type="hidden" id="cantidad" value="1" class="pl-2" />
+								  </form>
 							</figcaption>
 						</figure>
 					</article>
@@ -106,6 +157,14 @@
 								<h4 class="tm-gallery-title">Fuego y sangre.</h4>
 								<p class="tm-gallery-description">Se presenta como crónica histórica que narra los eventos que ocurrieron casi trescientos años antes de los acontecimientos de "Canción de Hielo y Fuego".</p>
 								<p class="tm-gallery-price">$1000</p>
+								<form id="formulario" name="formulario" method="post" action="php/cart.php">
+									<button type="button" class="btn btn-sm btn-outline-secondary">Detalles</button>
+									<button type="submit" class="btn btn-sm btn-outline-secondary">Añadir al carrito</button>
+									  <input name="ref" type="hidden" id="ref" value="mu005" />                           
+									  <input name="precio" type="hidden" id="precio" value="1000" />
+									  <input name="titulo" type="hidden" id="titulo" value="Fuego y sangre." />
+									  <input name="cantidad" type="hidden" id="cantidad" value="1" class="pl-2" />
+								  </form>
 							</figcaption>
 						</figure>
 					</article>
@@ -116,6 +175,14 @@
 								<h4 class="tm-gallery-title">La forma del agua.</h4>
 								<p class="tm-gallery-description">Un día, Elisa descubre un ser misterioso y anfibio que está siendo retenido en el laboratorio como parte de un experimento clasificado.</p>
 								<p class="tm-gallery-price">$600</p>
+								<form id="formulario" name="formulario" method="post" action="php/cart.php">
+									<button type="button" class="btn btn-sm btn-outline-secondary">Detalles</button>
+									<button type="submit" class="btn btn-sm btn-outline-secondary">Añadir al carrito</button>
+									  <input name="ref" type="hidden" id="ref" value="mu006" />                           
+									  <input name="precio" type="hidden" id="precio" value="600" />
+									  <input name="titulo" type="hidden" id="titulo" value="La forma del agua." />
+									  <input name="cantidad" type="hidden" id="cantidad" value="1" class="pl-2" />
+								  </form>
 							</figcaption>
 						</figure>
 					</article>
@@ -126,6 +193,14 @@
 								<h4 class="tm-gallery-title">Jardines de la luna.</h4>
 								<p class="tm-gallery-description">La trama se desarrolla en el imperio malazano, un vasto y poderoso reino que busca expandir su dominio por medio de la conquista y la diplomacia.</p>
 								<p class="tm-gallery-price">$310</p>
+								<form id="formulario" name="formulario" method="post" action="php/cart.php">
+									<button type="button" class="btn btn-sm btn-outline-secondary">Detalles</button>
+									<button type="submit" class="btn btn-sm btn-outline-secondary">Añadir al carrito</button>
+									  <input name="ref" type="hidden" id="ref" value="mu007" />                           
+									  <input name="precio" type="hidden" id="precio" value="310" />
+									  <input name="titulo" type="hidden" id="titulo" value="Jardines de la luna." />
+									  <input name="cantidad" type="hidden" id="cantidad" value="1" class="pl-2" />
+								  </form>
 							</figcaption>
 						</figure>
 					</article>
@@ -133,9 +208,17 @@
 						<figure>
 							<img src="img/gallery/08.jpg" alt="Image" class="img-fluid tm-gallery-img" />
 							<figcaption>
-								<h4 class="tm-gallery-title">La confusión de Ethere.</h4>
+								<h4 class="tm-gallery-title">Buscando a Alaska.</h4>
 								<p class="tm-gallery-description">Encontraremos una protagonista totalmente disparatada y divertida, e intentará seducir a un hombre que no quiere saber nada de mujeres.</p>
-								<p class="tm-gallery-price">$200</p>
+								<p class="tm-gallery-price">$550</p>
+								<form id="formulario" name="formulario" method="post" action="php/cart.php">
+									<button type="button" class="btn btn-sm btn-outline-secondary">Detalles</button>
+									<button type="submit" class="btn btn-sm btn-outline-secondary">Añadir al carrito</button>
+									  <input name="ref" type="hidden" id="ref" value="mu008" />                           
+									  <input name="precio" type="hidden" id="precio" value="200" />
+									  <input name="titulo" type="hidden" id="titulo" value="Buscando a Alaska." />
+									  <input name="cantidad" type="hidden" id="cantidad" value="1" class="pl-2" />
+								  </form>
 							</figcaption>
 						</figure>
 					</article>

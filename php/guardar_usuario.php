@@ -1,0 +1,30 @@
+<?php
+include 'conexion.php';
+
+// Obtener datos del formulario
+$usuario = $_POST['usuario'];
+$pass = $_POST['pass'];
+$pass2 = $_POST['pass2'];
+$correo = $_POST['correo'];
+
+// Verificar si las contraseñas coinciden
+if ($pass !== $pass2) {
+    echo "<script>alert('Las contraseñas no coinciden.'); window.location.href ='/MyLibrary/registrarse.html'</script>";
+    exit;
+}
+
+// Consulta para insertar los datos en la tabla
+$query = "INSERT INTO tb_usuarios (nombre_usuario, pass_usuario, email_usuario) 
+          VALUES ('$usuario', '$pass', '$correo')";
+
+// Ejecutar la consulta
+if (mysqli_query($conn, $query)) {
+    echo "<script>alert('Usuario registrado.'); window.location.href ='/MyLibrary/login.html'</script>";
+} else {
+    echo "<script>alert('Ha ocurrido un error con el registro.'); window.location.href ='/MyLibrary/registrarse.html'</script>";
+
+}
+
+// Cerrar la conexión
+mysqli_close($conn);
+?>
