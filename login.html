@@ -32,7 +32,7 @@
 									<li class="tm-nav-li"><a href="index.html" class="tm-nav-link">Inicio</a></li>
 									<li class="tm-nav-li"><a href="about.html" class="tm-nav-link">Acerca</a></li>
 									<li class="tm-nav-li"><a href="contact.html" class="tm-nav-link active">Contacto</a></li>
-									<li class="tm-nav-li"><a href="login.html" class="tm-nav-link">Login</a></li>
+									<li class="tm-nav-li"><a href="contact.html" class="tm-nav-link">Login</a></li>
 									<li class="tm-nav-li"><a href="index.html" class="tm-nav-link"><i class="fas fa-1x fa-cart-arrow-down tm-feature-icon"></i></a></li>
 								</ul>
 							</nav>	
@@ -43,49 +43,28 @@
 
 		<main>
 			<header class="row tm-welcome-section">
-				<h2 class="col-12 text-center tm-section-title">Contáctanos</h2>
-				<p class="col-12 text-center">Llena el formulario a continuación y nos pondremos en contacto contigo lo antes posible.<br>También puedes encontrarnos en nuestras redes sociales, donde compartimos noticias literarias, recomendaciones y más.<br>¡Únete a la conversación!<br>
-					Estamos ansiosos por saber de ti y ser parte de tu viaje literario. <br>¡Gracias por ser parte de la comunidad MyLibrary!</p>
+				<h2 class="col-12 text-center tm-section-title">Login</h2>
+				<p class="col-12 text-center">Inicia sesion en tu cuenta.</p>
 			</header>
 
-			<div class="tm-container-inner-2 tm-contact-section">
-				<div class="row">
-					<div class="col-md-6">
-						<form action="php/insertar_contacto.php" method="POST" class="tm-contact-form">
-					        <div class="form-group">
+			<div class="tm-container-inner-2 tm-contact-section centro-horizontal">
+				<div class="row centro-horizontal">
+					<div class="col-md-6 centro-horizontal">
+						<form action="php/insertar_usuario.php" method="POST" class="tm-contact-form centro-horizontal">
+					        <div class="form-group ">
 					          <input type="text" name="nombre" class="form-control" placeholder="Nombre" required="" />
 					        </div>
 					        
 					        <div class="form-group">
-					          <input type="email" name="correo" class="form-control" placeholder="Email" required="" />
+					          <input type="password" name="correo" class="form-control" placeholder="Contraseña" required="" />
 					        </div>
-				
-					        <div class="form-group">
-					          <textarea rows="5" name="mensaje" class="form-control" placeholder="Mensaje" required=""></textarea>
-					        </div>
-					
-					        <div class="form-group tm-d-flex">
-					          <button href="contact.html" type="submit" class="tm-btn tm-btn-success tm-btn-right">
+							<a href="registrarse.html" class="tm-nav-link2 text-center">¿No tienes una cuenta? Registrate<a>
+					        <div class="form-group tm-d-flex centro-horizontal padding-top">
+					          <button type="submit" class="tm-btn tm-btn-success tm-btn-right centro-horizontal">
 					            Enviar
 					          </button>
 					        </div>
 						</form>
-					</div>
-					<div class="col-md-6">
-						<div class="tm-address-box">
-							<h4 class="tm-info-title tm-text-success">Información de contacto.</h4>
-							<a href="" class="tm-contact-link">
-								<i class="fas fa-phone tm-contact-icon"></i>6311909700
-							</a>
-							<a href="mailto:andresf.gaxiolae@gmail.com" class="tm-contact-link">
-								<i class="fas fa-envelope tm-contact-icon"></i>andresf.gaxiolae@gmail.com
-							</a>
-							<div class="tm-contact-social">
-								<a href="https://www.facebook.com/Andy.Shadow.AS/" class="tm-social-link"><i class="fab fa-facebook tm-social-icon"></i></a>
-								<a href="https://github.com/AndyShaddix" class="tm-social-link"><i class="fab fa-github tm-social-icon"></i></a>
-								<a href="https://www.instagram.com/andyesquer/" class="tm-social-link"><i class="fab fa-instagram tm-social-icon"></i></a>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
