@@ -13,11 +13,11 @@ $query = "INSERT INTO tb_contactanos (nombre_contacto, correo_contacto, mensaje_
 
 // Ejecutar la consulta
 if (mysqli_query($conn, $query)) {
-    echo "Datos insertados correctamente.";
+    //echo header("Location: /MyLibrary/contact.html");
+    echo "<script>alert('Mensaje enviado.'); window.location.href ='/MyLibrary/contact.html'</script>";
 } else {
-    echo "Error al insertar datos: " . mysqli_error($conn);
+    echo "<script>alert('Ha ocurrido un error.'); window.location.href ='/MyLibrary/contact.html'</script>";
 }
-
 mysqli_close($conn);
 ?>
 
