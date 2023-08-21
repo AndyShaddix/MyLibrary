@@ -32,8 +32,8 @@
 									<li class="tm-nav-li"><a href="index.php" class="tm-nav-link">Inicio</a></li>
 									<li class="tm-nav-li"><a href="about.html" class="tm-nav-link">Acerca</a></li>
 									<li class="tm-nav-li"><a href="contact.html" class="tm-nav-link">Contacto</a></li>
-									<li class="tm-nav-li"><a href="contact.html" class="tm-nav-link active">Login</a></li>
-									<li class="tm-nav-li"><a href="index.php" class="tm-nav-link"><i class="fas fa-1x fa-cart-arrow-down tm-feature-icon"></i></a></li>
+									<li class="tm-nav-li"><a href="login.html" class="tm-nav-link active">Login</a></li>
+									<li class="tm-nav-li"><a href="carrito.php" class="tm-nav-link"><i class="fas fa-1x fa-cart-arrow-down tm-feature-icon"></i></a></li>
 								</ul>
 							</nav>	
 						</div>
@@ -57,8 +57,24 @@
 					        <div class="form-group">
 					          <input type="password" name="pass" class="form-control" placeholder="Contraseña" required="" />
 					        </div>
-							<div>
-							<a href="/MyLibrary/registrarse.html" class="tm-nav-link2 text-center">¿No tienes una cuenta? Registrate<a>
+							<style>
+								.botones-container {
+									display: flex;
+									justify-content: center; /* Centra horizontalmente */
+									align-items: center; /* Centra verticalmente */
+								  }
+								  .btn {
+										margin: 5px;
+										padding: 10px 20px;
+								 }
+								  .btn-custom-registro {
+										  background-color: #ffffff !important;
+										  color: rgb(0, 0, 0) !important;
+										  text-align: center;
+								   }
+								</style>
+							<div class="botones-container">
+							<a href="/MyLibrary/registrarse.html" class="btn btn-custom-registro">¿No tienes una cuenta? Registrate<a>
 							</div>
 					        <div class="form-group tm-d-flex centro-horizontal padding-top">
 					          <button type="submit" href=MyLibrary/index.php class="tm-btn tm-btn-success tm-btn-right centro-horizontal">

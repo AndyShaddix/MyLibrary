@@ -1,4 +1,7 @@
 <?php session_start(); 
+if (isset($_GET['borrar_carrito'])) {
+    unset($_SESSION['carrito']); // Borrar el carrito
+}
 if(isset($_SESSION['carrito'])){
 $carrito_mio=$_SESSION['carrito'];
 }
@@ -22,9 +25,12 @@ if(isset($_SESSION['carrito'])){
 	<meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>MyLibrary - Login</title>
+    <title>MyLibrary - Carrito</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-ZMP7rVo3mIykD+CT9zWHAoA2VOUaDBaR+ARhEZtaIWvCyBhEYBo5t8WArE9d1Bq" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" />
-    <link href="css/all.min.css" rel="stylesheet" />
+    <link href="styles.css" rel="stylesheet">
+	<link href="css/all.min.css" rel="stylesheet" />
 	<link href="css/templatemo-style.css" rel="stylesheet" />
 </head>
 
@@ -49,8 +55,8 @@ if(isset($_SESSION['carrito'])){
 									<li class="tm-nav-li"><a href="index.php" class="tm-nav-link">Inicio</a></li>
 									<li class="tm-nav-li"><a href="about.html" class="tm-nav-link">Acerca</a></li>
 									<li class="tm-nav-li"><a href="contact.html" class="tm-nav-link">Contacto</a></li>
-									<li class="tm-nav-li"><a href="contact.html" class="tm-nav-link active">Login</a></li>
-									<li class="tm-nav-li"><a href="index.php" class="tm-nav-link"><i class="fas fa-1x fa-cart-arrow-down tm-feature-icon"></i></a></li>
+									<li class="tm-nav-li"><a href="login.html" class="tm-nav-link">Login</a></li>
+									<li class="tm-nav-li"><a href="carrito.php" class="tm-nav-link active"><i class="fas fa-1x fa-cart-arrow-down tm-feature-icon"></i></a></li>
 								</ul>
 							</nav>	
 						</div>
@@ -63,66 +69,115 @@ if(isset($_SESSION['carrito'])){
 				<h2 class="col-12 text-center tm-section-title">Mi carrito</h2>
 				<p class="col-12 text-center">Completar compra.</p>
 			</header>
-<!-- MODAL CARRITO -->
-<div class="modal fade centro-horizontal" id="modal_cart" tabindex="-1"  aria-hidden="true">
-	<div class="modal-dialog centro-horizontal">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-			  <div class="modal-body">
-				  <div>
-					  <div class="p-2">
-						  <ul class="list-group mb-3">
-							  <?php
-							  if(isset($_SESSION['carrito'])){
-							  $total=0;
-							  for($i=0;$i<=count($carrito_mio)-1;$i ++){
-								  if(isset($carrito_mio[$i])){
-								  if($carrito_mio[$i]!=NULL){
-							  ?>
-							  <li class="list-group-item justify-content-between px-4">
-								  <div class="row" >
-									  <div class="col-10 p-0" style="text-align: left; color: #000000;"><h6 class="my-0">Cantidad: <?php echo $carrito_mio[$i]['cantidad'] ?> : <?php echo $carrito_mio[$i]['titulo']; ?></h6>
-									  </div>
-									  <div class="col-2 p-0"  style="text-align: right; color: #000000;" >
-									  <span class="text-muted"  style="text-align: right; color: #000000;"> $<?php echo $carrito_mio[$i]['precio'] * $carrito_mio[$i]['cantidad'];    ?></span>
-									  </div>
-								  </div>
-							  </li>
-							  <?php
-							  $total=$total + ($carrito_mio[$i]['precio'] * $carrito_mio[$i]['cantidad']);
-							  }
-							  }
-							  }
-							  }
-							  ?>
-							  <li class="list-group-item d-flex justify-content-between">
-							  <span  style="text-align: left; color: #000000;">Total (MXN)</span>
-							  <strong  style="text-align: left; color: #000000;"><?php
-							  if(isset($_SESSION['carrito'])){
-							  $total=0;
-							  for($i=0;$i<=count($carrito_mio)-1;$i ++){
-								  if(isset($carrito_mio[$i])){
-							  if($carrito_mio[$i]!=NULL){ 
-							  $total=$total + ($carrito_mio[$i]['precio'] * $carrito_mio[$i]['cantidad']);
-							  }
-							  }}}
-							  if(!isset($total)){$total = '0';}else{ $total = $total;}
-							  echo $total; ?> $</strong>
-							  </li>
-						  </ul>
-					  </div>
-				  </div>
-			  </div>
-		<div class="modal-footer">
-		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-		  <a type="button" class="btn btn-primary" href="php/borrarcarro.php">Vaciar carrito</a>
-		</div>
-	  </div>
+			<table>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+        </tr>
+		<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+	td{
+		border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+	}
+
+    th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #b6783f;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #ddd;
+    }
+
+    .total-row td {
+        font-weight: bold;
+    }
+</style>
+
+        <?php
+if (isset($carrito_mio)) {
+    $total_carrito = 0; // Inicializa el total del carrito
+    foreach ($carrito_mio as $producto) {
+        echo '<tr>';
+        
+        if (isset($producto['titulo'])) {
+            echo '<td>' . $producto['titulo'] . '</td>';
+        } else {
+            echo '<td></td>';
+        }
+        
+        if (isset($producto['cantidad'])) {
+            echo '<td>' . $producto['cantidad'] . '</td>';
+        } else {
+            echo '<td></td>';
+        }
+        
+        if (isset($producto['precio']) && isset($producto['cantidad'])) {
+            $subtotal = $producto['precio'] * $producto['cantidad'];
+            echo '<td>' . $subtotal . '</td>';
+            $total_carrito += $subtotal; // Agrega al total del carrito
+        } else {
+            echo '<td></td>';
+        }
+        
+        echo '</tr>';
+    }
+
+    // Imprime el total del carrito después de recorrer los productos
+    echo '<tr>';
+    echo '<td colspan="2">TOTAL</td>';
+    echo '<td>' . $total_carrito . '</td>';
+    echo '</tr>';
+}
+?>
+    </table>
+	<style>
+    .botones-container {
+      display: flex;
+      justify-content: center; /* Centra horizontalmente */
+      align-items: center; /* Centra verticalmente */
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 5px;
+      padding: 10px 20px;
+      border-radius: 20px; 
+      text-decoration: none; 
+      font-weight: bold;
+    }
+
+    .btn-custom-borrar {
+      background-color: red !important;
+      color: white !important;
+    }
+
+    .btn-custom-compra {
+      background-color: green !important;
+      color: white !important;
+    }
+  </style>
+	<div class="botones-container">
+	<a href="carrito.php?borrar_carrito=true" class="btn btn-custom-borrar">Borrar Carrito</a>
+	<a href="#" class="btn btn-custom-compra" id="realizarCompraBtn">Realizar Compra </a>
 	</div>
-  </div>
-  <!-- END MODAL CARRITO -->
 		<footer class="tm-footer text-center">
 			<footer class="tm-footer text-center">
 				<p>Copyright &copy; 2023. Aplicaciones WEB.
@@ -158,4 +213,21 @@ if(isset($_SESSION['carrito'])){
 		});
 	</script>
 </body>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var realizarCompraBtn = document.getElementById("realizarCompraBtn");
+    
+    realizarCompraBtn.addEventListener("click", function () {
+      var confirmarCompra = confirm("¿Estás seguro de realizar la compra?");
+      
+      if (confirmarCompra) {
+        // Aquí se ejecutarían las acciones en tu base de datos
+        // Por ejemplo, enviar una petición a tu archivo PHP que actualiza las tablas
+        // y muestra un mensaje de éxito
+        
+        alert("Compra realizada con éxito");
+      }
+    });
+  });
+</script>
 </html>

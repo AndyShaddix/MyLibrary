@@ -23,12 +23,12 @@ if(isset($_SESSION['carrito'])){
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>MyLibrary</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />    
+	<link href="styles.css" rel="stylesheet">
 	<link href="css/templatemo-style.css" rel="stylesheet" />
-	<link href="https://ccdn.jsdelivr.net/npm/bootstrap@5.02/dist/css/bootstrap.min.css" reel="stylesheet"/>
+	<link href="https://ccdn.jsdelivr.net/npm/bootstrap@5.02/dist/css/bootstrap.min.css" rel="stylesheet"/>
 	<link href="css/all.min.css" rel="stylesheet" />
 </head>
-<body> 
-
+<body>
 	<div class="container">
 	<!-- Top box -->
 		<!-- Logo & Site Name -->
@@ -56,7 +56,102 @@ if(isset($_SESSION['carrito'])){
 				</div>
 			</div>
 		</div>
+		<style>
+		.menu-toggle {
+    	display: none;
+   		cursor: pointer;
+    	padding: 10px;
+    	background-color: transparent;
+    	border: none;
+		}
 
+		.bar {
+    	display: block;
+    	width: 25px;
+    	height: 3px;
+    	margin: 5px auto;
+    	background-color: #333;
+    	transition: background-color 0.3s ease;
+		}
+
+/* Cambiar color de las barras cuando se active el menú */
+		.menu-toggle.active .bar {
+   		background-color: #fffff;
+		}
+
+/* Estilos para el menú de navegación */
+	.navbar {
+    background-color: #b6783f;
+    padding: 20px;
+	}
+
+	.nav-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+	}
+
+	.nav-list li {
+    margin-right: 20px;
+	}
+
+	.nav-list li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+	}
+
+	.nav-list li a:hover {
+    color: #f4f4f4;
+	}
+
+/* Estilos para la versión móvil */
+	@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-list {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: #333;
+        width: 100%;
+        border-top: 1px solid #444;
+    }
+
+    .nav-list.active {
+        display: flex;
+    }
+
+    /* Estilos para los enlaces en el menú desplegable */
+    .nav-list a {
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .nav-list a:hover {
+        background-color: #444;
+    }
+}
+			</style>
+		<nav class="navbar">
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-list" id="nav-list">
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Productos</a></li>
+            <li><a href="#">Nosotros</a></li>
+            <li><a href="#">Contacto</a></li>
+        </ul>
+    </nav>
 		<main>
 			<header class="row tm-welcome-section">
 				<h2 class="col-12 text-center tm-section-title">Bienvenido a MyLibrary</h2>
@@ -72,7 +167,25 @@ if(isset($_SESSION['carrito'])){
 					</ul>
 				</nav>
 			</div>
+			<style>
+    /* Estilo para el formulario */
+    #formulario {
+        margin-bottom: 10px;
+        background-color: #b6783f;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+		text-align: center;
+    }
 
+    /* Estilo para los botones */
+    .btn-group button {
+        margin-right: 5px;
+		background-color: #532121; /* Cambia el color de fondo del botón */
+        color: #ffffff; /* Cambia el color del texto del botón */
+        border: none; /* Quita el borde del botón */
+    }
+</style>
 			<!-- Gallery -->
 			<div class="row tm-gallery">
 				<!-- gallery page 1 -->
@@ -85,12 +198,12 @@ if(isset($_SESSION['carrito'])){
 								<p class="tm-gallery-description">Harry Potter, un joven huérfano que descubre su verdadera herencia como mago el día de su undécimo cumpleaños.</p>
 								<p class="tm-gallery-price">$500</p>
 								<form id="formulario" name="formulario" method="post" action="php/cart.php">
-									<button type="button" class="btn btn-sm btn-outline-secondary">Detalles</button>
+									
 									<button type="submit" class="btn btn-sm btn-outline-secondary">Añadir al carrito</button>
 									  <input name="ref" type="hidden" id="ref" value="mu001" />                           
 									  <input name="precio" type="hidden" id="precio" value="500" />
 									  <input name="titulo" type="hidden" id="titulo" value="Harry Potter y la piedra filosofal." />
-									  <input name="cantidad" type="hidden" id="cantidad" value="1" class="pl-2" />
+									  <input name="cantidad" type="number" id="cantidad" value="1" class="pl-2" min="1"/>
 								  </form>
 							</figcaption>
 						</figure>
@@ -103,12 +216,13 @@ if(isset($_SESSION['carrito'])){
 								<p class="tm-gallery-description">La historia se desarrolla en un mundo de fantasía lleno de razas mágicas, héroes valientes y un anillo con poderes corruptores.</p>
 								<p class="tm-gallery-price">$650</p>
 								<form id="formulario" name="formulario" method="post" action="php/cart.php">
-									<button type="button" class="btn btn-sm btn-outline-secondary">Detalles</button>
+									
 									<button type="submit" class="btn btn-sm btn-outline-secondary">Añadir al carrito</button>
 									  <input name="ref" type="hidden" id="ref" value="mu002" />                           
 									  <input name="precio" type="hidden" id="precio" value="650" />
 									  <input name="titulo" type="hidden" id="titulo" value="El señor de los anillos. La comunidad del anillo." />
-									  <input name="cantidad" type="hidden" id="cantidad" value="1" class="pl-2" />
+									  <input name="cantidad" type="number" id="cantidad" value="1" class="pl-2" min="1" />
+
 								  </form>
 							</figcaption>
 						</figure>
@@ -122,12 +236,13 @@ if(isset($_SESSION['carrito'])){
 								<p class="tm-gallery-price">$200</p>
 
 								<form id="formulario" name="formulario" method="post" action="php/cart.php">
-									<button type="button" class="btn btn-sm btn-outline-secondary">Detalles</button>
+									
 									<button type="submit" class="btn btn-sm btn-outline-secondary">Añadir al carrito</button>
 									  <input name="ref" type="hidden" id="ref" value="mu003" />                           
 									  <input name="precio" type="hidden" id="precio" value="200" />
 									  <input name="titulo" type="hidden" id="titulo" value="El libro de los secretos vivientes." />
-									  <input name="cantidad" type="hidden" id="cantidad" value="1" class="pl-2" />
+									  <input name="cantidad" type="number" id="cantidad" value="1" class="pl-2" min="1" />
+
 								  </form>
 							</figcaption>
 						</figure>
@@ -140,12 +255,13 @@ if(isset($_SESSION['carrito'])){
 								<p class="tm-gallery-description">Una obra de fantasía clásica que ha encantado a lectores de todas las edades durante décadas.</p>
 								<p class="tm-gallery-price">$350</p>
 								<form id="formulario" name="formulario" method="post" action="php/cart.php">
-									<button type="button" class="btn btn-sm btn-outline-secondary">Detalles</button>
+									
 									<button type="submit" class="btn btn-sm btn-outline-secondary">Añadir al carrito</button>
 									  <input name="ref" type="hidden" id="ref" value="mu004" />                           
 									  <input name="precio" type="hidden" id="precio" value="350" />
 									  <input name="titulo" type="hidden" id="titulo" value="Crónicas de Narnia.<br>El león, la bruja y el ropero." />
-									  <input name="cantidad" type="hidden" id="cantidad" value="1" class="pl-2" />
+									  <input name="cantidad" type="number" id="cantidad" value="1" class="pl-2" min="1" />
+
 								  </form>
 							</figcaption>
 						</figure>
@@ -158,12 +274,13 @@ if(isset($_SESSION['carrito'])){
 								<p class="tm-gallery-description">Se presenta como crónica histórica que narra los eventos que ocurrieron casi trescientos años antes de los acontecimientos de "Canción de Hielo y Fuego".</p>
 								<p class="tm-gallery-price">$1000</p>
 								<form id="formulario" name="formulario" method="post" action="php/cart.php">
-									<button type="button" class="btn btn-sm btn-outline-secondary">Detalles</button>
+									
 									<button type="submit" class="btn btn-sm btn-outline-secondary">Añadir al carrito</button>
 									  <input name="ref" type="hidden" id="ref" value="mu005" />                           
 									  <input name="precio" type="hidden" id="precio" value="1000" />
 									  <input name="titulo" type="hidden" id="titulo" value="Fuego y sangre." />
-									  <input name="cantidad" type="hidden" id="cantidad" value="1" class="pl-2" />
+									  <input name="cantidad" type="number" id="cantidad" value="1" class="pl-2" min="1" />
+
 								  </form>
 							</figcaption>
 						</figure>
@@ -176,12 +293,13 @@ if(isset($_SESSION['carrito'])){
 								<p class="tm-gallery-description">Un día, Elisa descubre un ser misterioso y anfibio que está siendo retenido en el laboratorio como parte de un experimento clasificado.</p>
 								<p class="tm-gallery-price">$600</p>
 								<form id="formulario" name="formulario" method="post" action="php/cart.php">
-									<button type="button" class="btn btn-sm btn-outline-secondary">Detalles</button>
+									
 									<button type="submit" class="btn btn-sm btn-outline-secondary">Añadir al carrito</button>
 									  <input name="ref" type="hidden" id="ref" value="mu006" />                           
 									  <input name="precio" type="hidden" id="precio" value="600" />
 									  <input name="titulo" type="hidden" id="titulo" value="La forma del agua." />
-									  <input name="cantidad" type="hidden" id="cantidad" value="1" class="pl-2" />
+									  <input name="cantidad" type="number" id="cantidad" value="1" class="pl-2" min="1" />
+
 								  </form>
 							</figcaption>
 						</figure>
@@ -194,12 +312,12 @@ if(isset($_SESSION['carrito'])){
 								<p class="tm-gallery-description">La trama se desarrolla en el imperio malazano, un vasto y poderoso reino que busca expandir su dominio por medio de la conquista y la diplomacia.</p>
 								<p class="tm-gallery-price">$310</p>
 								<form id="formulario" name="formulario" method="post" action="php/cart.php">
-									<button type="button" class="btn btn-sm btn-outline-secondary">Detalles</button>
 									<button type="submit" class="btn btn-sm btn-outline-secondary">Añadir al carrito</button>
 									  <input name="ref" type="hidden" id="ref" value="mu007" />                           
 									  <input name="precio" type="hidden" id="precio" value="310" />
 									  <input name="titulo" type="hidden" id="titulo" value="Jardines de la luna." />
-									  <input name="cantidad" type="hidden" id="cantidad" value="1" class="pl-2" />
+									  <input name="cantidad" type="number" id="cantidad" value="1" class="pl-2" min="1" />
+
 								  </form>
 							</figcaption>
 						</figure>
@@ -212,12 +330,13 @@ if(isset($_SESSION['carrito'])){
 								<p class="tm-gallery-description">Encontraremos una protagonista totalmente disparatada y divertida, e intentará seducir a un hombre que no quiere saber nada de mujeres.</p>
 								<p class="tm-gallery-price">$550</p>
 								<form id="formulario" name="formulario" method="post" action="php/cart.php">
-									<button type="button" class="btn btn-sm btn-outline-secondary">Detalles</button>
+		
 									<button type="submit" class="btn btn-sm btn-outline-secondary">Añadir al carrito</button>
 									  <input name="ref" type="hidden" id="ref" value="mu008" />                           
 									  <input name="precio" type="hidden" id="precio" value="200" />
 									  <input name="titulo" type="hidden" id="titulo" value="Buscando a Alaska." />
-									  <input name="cantidad" type="hidden" id="cantidad" value="1" class="pl-2" />
+									  <input name="cantidad" type="number" id="cantidad" value="1" class="pl-2" min="1" />
+
 								  </form>
 							</figcaption>
 						</figure>
