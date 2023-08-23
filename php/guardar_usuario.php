@@ -13,11 +13,9 @@ if ($pass !== $pass2) {
     exit;
 }
 
-// Consulta para insertar los datos en la tabla
 $query = "INSERT INTO tb_usuarios (nombre_usuario, pass_usuario, email_usuario) 
           VALUES ('$usuario', '$pass', '$correo')";
 
-// Ejecutar la consulta
 if (mysqli_query($conn, $query)) {
     echo "<script>alert('Usuario registrado.'); window.location.href ='/MyLibrary/login.html'</script>";
 } else {
@@ -25,6 +23,5 @@ if (mysqli_query($conn, $query)) {
 
 }
 
-// Cerrar la conexión
 mysqli_close($conn);
 ?>

@@ -30,8 +30,6 @@ if (isset($_POST['titulo'])) {
     $_SESSION['carrito'] = $carrito_mio;
 }
 
-// Resto del código
-
 if (isset($_SESSION['carrito'])) {
     for ($i = 0; $i < count($carrito_mio); $i++) {
         if ($carrito_mio[$i] != NULL && isset($carrito_mio[$i]['cantidad'])) {
@@ -42,6 +40,5 @@ if (isset($_SESSION['carrito'])) {
     }
 }
 
-// Aquí puedes continuar con el resto del código
 header("Location: " . $_SERVER['HTTP_REFERER'] . "");
 ?>

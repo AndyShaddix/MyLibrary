@@ -37,8 +37,6 @@ if(isset($_SESSION['carrito'])){
 <body> 
 
 	<div class="container">
-		<!-- Top box -->
-			<!-- Logo & Site Name -->
 			<div class="placeholder">
 				<div class="parallax-window" data-parallax="scroll" data-image-src="img/banner.png">
 					<div class="tm-header">
@@ -113,7 +111,7 @@ if(isset($_SESSION['carrito'])){
 
         <?php
 if (isset($carrito_mio)) {
-    $total_carrito = 0; // Inicializa el total del carrito
+    $total_carrito = 0; 
     foreach ($carrito_mio as $producto) {
         echo '<tr>';
         
@@ -132,7 +130,7 @@ if (isset($carrito_mio)) {
         if (isset($producto['precio']) && isset($producto['cantidad'])) {
             $subtotal = $producto['precio'] * $producto['cantidad'];
             echo '<td>' . $subtotal . '</td>';
-            $total_carrito += $subtotal; // Agrega al total del carrito
+            $total_carrito += $subtotal;
         } else {
             echo '<td></td>';
         }
@@ -140,7 +138,6 @@ if (isset($carrito_mio)) {
         echo '</tr>';
     }
 
-    // Imprime el total del carrito después de recorrer los productos
     echo '<tr>';
     echo '<td colspan="2">TOTAL</td>';
     echo '<td>' . $total_carrito . '</td>';
@@ -224,7 +221,6 @@ if (isset($carrito_mio)) {
         // Aquí se ejecutarían las acciones en tu base de datos
         // Por ejemplo, enviar una petición a tu archivo PHP que actualiza las tablas
         // y muestra un mensaje de éxito
-        
         alert("Compra realizada con éxito");
       }
     });

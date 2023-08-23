@@ -1,8 +1,8 @@
 .btn-custom {
     display: inline-block !important; 
     padding: 10px 20px !important;
-    background-color: #ff0000 !important; /* Color de fondo */
-    color: #ffffff !important; /* Color del texto */
+    background-color: #ff0000 !important;
+    color: #ffffff !important; 
     border: none !important;
     border-radius: 4px !important;
     text-decoration: none !important;
@@ -18,19 +18,16 @@
     height: 100vh; 
   }
 
-  .btn-custom:hover {
-    background-color: #cc0000 !important; /* Color de fondo al pasar el mouse */
+  .btn-custom:hover { /* Color de fondo al pasar el mouse */
+    background-color: #cc0000 !important; 
   }
 
   .btn-borrar-carrito {
     background-color: red;
     color: white;
-    /* Otros estilos específicos si es necesario */
   }
   
-  /* Estilo específico para el botón de realizar compra */
   .btn-realizar-compra {
     background-color: green;
     color: white;
-    /* Otros estilos específicos si es necesario */
   }

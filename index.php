@@ -30,8 +30,6 @@ if(isset($_SESSION['carrito'])){
 </head>
 <body>
 	<div class="container">
-	<!-- Top box -->
-		<!-- Logo & Site Name -->
 		<div class="placeholder">
 			<div class="parallax-window" data-parallax="scroll" data-image-src="img/banner.png">
 				<div class="tm-header">
@@ -70,13 +68,12 @@ if(isset($_SESSION['carrito'])){
     	width: 25px;
     	height: 3px;
     	margin: 5px auto;
-    	background-color: #333;
-    	transition: background-color 0.3s ease;
+    	background-color: #5C0A0A;
+    	transition: #FFFFFFFF 0.3s ease;
 		}
 
-/* Cambiar color de las barras cuando se active el menú */
 		.menu-toggle.active .bar {
-   		background-color: #fffff;
+   		background-color: #FF0000;
 		}
 
 /* Estilos para el menú de navegación */
@@ -97,16 +94,15 @@ if(isset($_SESSION['carrito'])){
 
 	.nav-list li a {
     text-decoration: none;
-    color: #fff;
-    font-weight: bold;
+    color: #FFFFFF;
+    font-weight: none;
     transition: color 0.3s ease;
 	}
 
 	.nav-list li a:hover {
-    color: #f4f4f4;
+    color: #884416;
 	}
 
-/* Estilos para la versión móvil */
 	@media (max-width: 768px) {
     .menu-toggle {
         display: block;
@@ -118,9 +114,9 @@ if(isset($_SESSION['carrito'])){
         position: absolute;
         top: 60px;
         left: 0;
-        background-color: #333;
+        background-color: #5C0A0A;
         width: 100%;
-        border-top: 1px solid #444;
+        border-top: 1px solid #DA1919;
     }
 
     .nav-list.active {
@@ -129,13 +125,13 @@ if(isset($_SESSION['carrito'])){
 
     /* Estilos para los enlaces en el menú desplegable */
     .nav-list a {
-        color: #fff;
+        color: #000000;
         padding: 10px;
         text-align: center;
     }
 
     .nav-list a:hover {
-        background-color: #444;
+        background-color: #4444444;
     }
 }
 			</style>
@@ -168,7 +164,6 @@ if(isset($_SESSION['carrito'])){
 				</nav>
 			</div>
 			<style>
-    /* Estilo para el formulario */
     #formulario {
         margin-bottom: 10px;
         background-color: #b6783f;
@@ -178,17 +173,15 @@ if(isset($_SESSION['carrito'])){
 		text-align: center;
     }
 
-    /* Estilo para los botones */
     .btn-group button {
         margin-right: 5px;
-		background-color: #532121; /* Cambia el color de fondo del botón */
-        color: #ffffff; /* Cambia el color del texto del botón */
-        border: none; /* Quita el borde del botón */
+		background-color: #532121; 
+        color: #ffffff; 
+        border: none; 
     }
 </style>
 			<!-- Gallery -->
 			<div class="row tm-gallery">
-				<!-- gallery page 1 -->
 				<div id="tm-gallery-page-fantasia" class="tm-gallery-page">
 					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
 						<figure>
@@ -341,9 +334,7 @@ if(isset($_SESSION['carrito'])){
 							</figcaption>
 						</figure>
 					</article>
-				</div> <!-- gallery page 1 -->
 				
-				<!-- gallery page 2 -->
 				<div id="tm-gallery-page-horror" class="tm-gallery-page hidden">
 					<article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
 						<figure>
@@ -470,7 +461,7 @@ if(isset($_SESSION['carrito'])){
 						</figure>
 					</article>
 
-				</div> <!-- gallery page 3 -->
+				</div> 
 			</div>
 			<div class="tm-section tm-container-inner">
 				<div class="row">
@@ -493,7 +484,6 @@ if(isset($_SESSION['carrito'])){
 		<footer class="tm-footer text-center">
 			<p>Copyright &copy; 2023. Aplicaciones WEB.
 				<div class="container">
-					<!-- (p>lorem)*20 (código a usar si tienes instalada la extensión emmet)-->
 				</div>
 			
 				<div class="social">
@@ -507,7 +497,6 @@ if(isset($_SESSION['carrito'])){
 	<script src="js/parallax.min.js"></script>
 	<script>
 		$(document).ready(function(){
-			// Handle click on paging links
 			$('.tm-paging-link').click(function(e){
 				e.preventDefault();
 				
