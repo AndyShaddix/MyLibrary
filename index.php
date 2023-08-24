@@ -15,6 +15,7 @@ if(isset($_SESSION['carrito'])){
 }
      if(!isset($totalcantidad)){$totalcantidad = '';}else{ $totalcantidad = $totalcantidad;}
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,6 +48,7 @@ if(isset($_SESSION['carrito'])){
 								<li class="tm-nav-li"><a href="about.html" class="tm-nav-link">Acerca</a></li>
 								<li class="tm-nav-li"><a href="contact.html" class="tm-nav-link">Contacto</a></li>
 								<li class="tm-nav-li"><a href="login.html" class="tm-nav-link">Login</a></li>
+								<li class="tm-nav-li"><a href="php/logout.php" class="tm-nav-link">Logout</a></li>
 								<li class="tm-nav-li"><a href="carrito.php" class="tm-nav-link"><?php echo $totalcantidad;?><i class="fas fa-1x fa-cart-arrow-down tm-feature-icon"></i></a></li>
 							</ul>
 						</nav>	
@@ -123,34 +125,94 @@ if(isset($_SESSION['carrito'])){
         display: flex;
     }
 
-    /* Estilos para los enlaces en el menú desplegable */
     .nav-list a {
-        color: #000000;
+        color: #9DFF00;
         padding: 10px;
         text-align: center;
     }
 
     .nav-list a:hover {
-        background-color: #4444444;
+        background-color: #0EFCFC;
     }
+	
 }
+/* Estilos para la barra de navegación */
+.navbar {
+    background-color: #333;
+    padding: 10px;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-list li {
+    position: relative;
+}
+
+/* Estilos para la lista desplegable */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #884416;
+    border: 1px solid #B96F32;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 10px;
+    top: 30px;
+    left: 0;
+	transition: opacity 1.0s ease-in-out;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content li {
+    padding: 5px 0;
+}
+
+/* Estilos generales para los enlaces */
+.nav-list a {
+    text-decoration: none;
+    color: #B81616f;
+}
+
+.dropdown-content a {
+    color: #FF0000333;
+}
+
+.dropdown-content a:hover {
+    background-color: #4B2308;
+}
+
 			</style>
 		<nav class="navbar">
-        <div class="menu-toggle" id="mobile-menu">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
-        <ul class="nav-list" id="nav-list">
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Productos</a></li>
-            <li><a href="#">Nosotros</a></li>
-            <li><a href="#">Contacto</a></li>
-        </ul>
-    </nav>
+    <ul class="nav-list" id="nav-list">
+        <li class="dropdown">
+            <a href="#" class="dropbtn">CRUD</a>
+            <ul class="dropdown-content">
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="#">Contacto</a></li>
+                <li><a href="#">Usuarios</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Productos</a></li>
+    </ul>
+</nav>
 		<main>
 			<header class="row tm-welcome-section">
-				<h2 class="col-12 text-center tm-section-title">Bienvenido a MyLibrary</h2>
+			<?php
+        if (isset($_SESSION['usuario'])) {
+            echo '<h1 class="col-12 text-center tm-section-title">Bienvenido(a), ' . $_SESSION['usuario'] . '</h1>';
+       		 }else{
+			echo '<h1 class="col-12 text-center tm-section-title">Bienvenido a MyLibrary</h1>';
+			 }
+       		?>
 				<p class="col-12 text-center">Cada libro, una nueva travesía.</p>
 			</header>
 			
@@ -508,5 +570,28 @@ if(isset($_SESSION['carrito'])){
 			});
 		});
 	</script>
+<script>
+    var dropdownContent = document.getElementById("dropdown-content");
+    var dropbtn = document.querySelector(".dropbtn");
+
+    dropbtn.addEventListener("click", function() {
+        if (dropdownContent.style.display === "block") {
+            dropdownContent.style.display = "none";
+        } else {
+            dropdownContent.style.display = "block";
+        }
+    });
+
+    // Oculta el menú después de 2 segundos (2000 milisegundos)
+    function ocultarMenu() {
+        dropdownContent.style.display = "none";
+    }
+
+    window.addEventListener("click", function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            setTimeout(ocultarMenu, 2000);
+        }
+    });
+</script>
 </body>
 </html>

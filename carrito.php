@@ -1,6 +1,6 @@
 <?php session_start(); 
 if (isset($_GET['borrar_carrito'])) {
-    unset($_SESSION['carrito']); // Borrar el carrito
+    unset($_SESSION['carrito']); 
 }
 if(isset($_SESSION['carrito'])){
 $carrito_mio=$_SESSION['carrito'];

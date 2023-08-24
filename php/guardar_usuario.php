@@ -1,13 +1,11 @@
 <?php
 include 'conexion.php';
 
-// Obtener datos del formulario
 $usuario = $_POST['usuario'];
 $pass = $_POST['pass'];
 $pass2 = $_POST['pass2'];
 $correo = $_POST['correo'];
 
-// Verificar si las contraseñas coinciden
 if ($pass !== $pass2) {
     echo "<script>alert('Las contraseñas no coinciden.'); window.location.href ='/MyLibrary/registrarse.html'</script>";
     exit;
