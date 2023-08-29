@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>MyLibrary - Productos</title>
+    <title>MyLibrary - Editar usuario</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" />
     <link href="css/all.min.css" rel="stylesheet" />
 	<link href="css/templatemo-style.css" rel="stylesheet" />
@@ -29,7 +30,7 @@
 									<li class="tm-nav-li"><a href="index.php" class="tm-nav-link">Inicio</a></li>
 									<li class="tm-nav-li"><a href="about.html" class="tm-nav-link">Acerca</a></li>
 									<li class="tm-nav-li"><a href="contact.html" class="tm-nav-link">Contacto</a></li>
-									<li class="tm-nav-li"><a href="contact.html" class="tm-nav-link">Registro</a></li>
+									<li class="tm-nav-li"><a href="contact.html" class="tm-nav-link active">Registro</a></li>
 									<li class="tm-nav-li"><a href="index.php" class="tm-nav-link"><i class="fas fa-1x fa-cart-arrow-down tm-feature-icon"></i></a></li>
 								</ul>
 							</nav>	
@@ -40,26 +41,60 @@
 
 		<main>
 			<header class="row tm-welcome-section">
-				<h2 class="col-12 text-center tm-section-title">Agregar libro.</h2>
-				<p class="col-12 text-center">Registrar un libro en MyLibrary.</p>
+				<h2 class="col-12 text-center tm-section-title">Editar o eliminar usuario.</h2>
+				<p class="col-12 text-center">En esta pagina pudes borrar o editar tu usuario.</p>
 			</header>
-
 			<div class="tm-container-inner-2 tm-contact-section centro-horizontal">
 				<div class="row centro-horizontal">
 					<div class="col-md-6 centro-horizontal">
-						<form action="php/registrar_libro.php" method="POST" class="tm-contact-form centro-horizontal">
+						<form action="php/borrar_registro.php" method="POST" class="tm-contact-form centro-horizontal">
+							<label for="accion">Que deseas hacer</label>
+        <select id="accion" name="accion" onchange="mostrarDatos()">
+			<option selected>Escoger.</option>
+            <option value="borrar" id="borrar">Borrar</option>
+            <option value="actualizar" id="actualizar">Actualizar</option>
+        </select>
+							<br><br>
 					        <div class="form-group ">
-					          <input type="text" name="isbn" class="form-control" placeholder="Ingresar ISBN." required="" />
+					          <input type="email" name="correo" id="correo" class="form-control" placeholder="Correo"/>
 					        </div>
 					        <div class="form-group">
-					          <input type="text" name="titulo" class="form-control" placeholder="Ingresar titulo." required="" />
+					          <input type="number" name="id" id="id" class="form-control" placeholder="ID"/>
 					        </div>
 							<div class="form-group">
-								<input type="number" name="cantidad" class="form-control" placeholder="Cantidad recibida." required="" />
+								<input type="text" name="nombre" id="nombre" class="form-control" placeholder="Usuario"/>
 							</div>
+							<div class="form-group ">
+								<input type="password" name="pass" id="pass" class="form-control" placeholder="Password"/>
+							</div>
+							<div class="form-group ">
+								<input type="password" name="pass2" id="pass2" class="form-control" placeholder="Repetir password"/>
+							</div>
+							<style>
+							.botones-container {
+								display: flex;
+								justify-content: center; 
+								align-items: center; 
+							  }
+							  .btn {
+									display: inline-block;
+									margin: 5px;
+									padding: 10px 20px;
+									text-decoration: none; 
+    						 }
+							  .btn-custom-login {
+      								background-color: #195d66 !important;
+      								color: white !important;
+      						 }
+							</style>
+							<div class="form-group tm-d-flex centro-horizontal padding-top">
+								<button type="submit" name="mostrar" class="tm-btn tm-btn-success tm-btn-right centro-horizontal">
+								  Mostrar.
+								</button>
+							  </div>
 					        <div class="form-group tm-d-flex centro-horizontal padding-top">
-					          <button type="submit" class="tm-btn tm-btn-success tm-btn-right centro-horizontal">
-					            Registrar libro.
+					          <button type="submit" name="realizar" class="tm-btn tm-btn-success tm-btn-right centro-horizontal" ">
+					            Realizar.
 					          </button>
 					        </div>
 						</form>
@@ -101,6 +136,34 @@
 			  });
 			}	
 		});
+		function mostrarDatos() {
+            var accion = document.getElementById("accion").value;
+            var correo = document.getElementById("correo");
+            var id = document.getElementById("id");
+            var nombre = document.getElementById("nombre");
+            var pass = document.getElementById("pass");
+            var pass2 = document.getElementById("pass2");
+
+            if (accion == "borrar") {
+                id.disabled = true;
+                nombre.disabled = true;
+                pass.disabled = true;
+                pass2.disabled = true;
+            } else if (accion == "actualizar") {
+                id.disabled = false;
+                nombre.disabled = false;
+                pass.disabled = false;
+                pass2.disabled = false;
+            }
+        }
+
+		function confirmarBorrar() {
+    var respuesta = confirm("¿Estás seguro de borrar el registro?");
+    if (respuesta) {
+        window.location.href = "/php/borrar_registro.php";
+    }
+}
 	</script>
+	  
 </body>
 </html>
